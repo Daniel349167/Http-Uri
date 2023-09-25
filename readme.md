@@ -77,12 +77,12 @@
 - **Respuesta**: Cuando usas `curl`, a menos que le digas específicamente que guarde y utilice cookies, no mantendrá el estado de la sesión entre múltiples solicitudes. En un navegador, la cookie se guardaría y se enviaría automáticamente con cada solicitud posterior al mismo servidor. En `curl`, necesitas especificar un archivo donde guardar las cookies con `--cookie-jar` y luego usar `--cookie` para enviar esas cookies en solicitudes posteriores..
 
 ## Pregunta 3
-**Al observar el encabezado Set-Cookie o el contenido del archivo cookies.txt, parece que podría haber creado fácilmente esta cookie y simplemente obligar al servidor a creer que ha iniciado sesión. En la práctica, ¿cómo evitan los servidores esta inseguridad?**
-- **Respuesta**: Los servidores toman varias medidas para asegurarse de que las cookies no puedan ser falsificadas o robadas:
+### Al observar el encabezado Set-Cookie o el contenido del archivo cookies.txt, parece que podría haber creado fácilmente esta cookie y simplemente obligar al servidor a creer que ha iniciado sesión. 
+
+#### Respuesta:
 - **HTTPS**: Asegura que las cookies se transmitan de forma segura.
-- **Atributos de Cookie**: Como `HttpOnly` y `Secure` para mejorar la seguridad.
-- **Tokens CSRF**: Para prevenir ataques de falsificación de solicitudes entre sitios.
-- **Rotación de Sesiones**: Cambiar los identificadores de sesión con regularidad.
-- **Autenticación de Dos Factores**: Agrega una capa extra de seguridad.
-- **Políticas de Cors**: Controlan qué dominios pueden acceder a las cookies.
-Espero que este formato te sea de utilidad.
+- **Atributos de Cookie**: Utilizan atributos como `HttpOnly` y `Secure` para mejorar la seguridad.
+- **Tokens CSRF**: Implementan tokens para prevenir ataques de falsificación de solicitudes entre sitios.
+- **Rotación de Sesiones**: Cambian los identificadores de sesión con regularidad para evitar la fijación de sesión.
+- **Autenticación de Dos Factores**: Agregan una capa extra de seguridad con la autenticación de dos factores.
+- **Políticas de CORS**: Controlan qué dominios pueden acceder a las cookies para evitar la exposición a sitios web maliciosos.
