@@ -70,12 +70,19 @@
 
 ## Pregunta 1
 **Prueba las dos primeras operaciones GET anteriores. ¿Cuáles son las diferencias en los encabezados de respuesta que indican que la segunda operación está configurando una cookie?**
-- **Respuesta**: El encabezado Set-Cookie está presente en la segunda operación.
+- **Respuesta**: En la respuesta HTTP de la segunda operación, deberías ver un encabezado llamado `Set-Cookie`. Este encabezado especifica la cookie que se debe almacenar en el cliente. Contiene el nombre de la cookie, el valor, y otros atributos como el dominio, el tiempo de expiración, entre otros. Esto indica que el servidor está intentando establecer una cookie en tu navegador o cliente.
 
 ## Pregunta 2
 **Bien, ahora supuestamente "logged in" porque el servidor configuró una cookie que indica esto. Sin embargo, si intentaa GET / nuevamente, seguirá diciendo "Logged: false". ¿Qué está sucediendo?**
-- **Respuesta**: curl no guarda la cookie de manera predeterminada entre sesiones distintas.
+- **Respuesta**: Cuando usas `curl`, a menos que le digas específicamente que guarde y utilice cookies, no mantendrá el estado de la sesión entre múltiples solicitudes. En un navegador, la cookie se guardaría y se enviaría automáticamente con cada solicitud posterior al mismo servidor. En `curl`, necesitas especificar un archivo donde guardar las cookies con `--cookie-jar` y luego usar `--cookie` para enviar esas cookies en solicitudes posteriores..
 
 ## Pregunta 3
 **Al observar el encabezado Set-Cookie o el contenido del archivo cookies.txt, parece que podría haber creado fácilmente esta cookie y simplemente obligar al servidor a creer que ha iniciado sesión. En la práctica, ¿cómo evitan los servidores esta inseguridad?**
-- **Respuesta**: Los servidores usan varias estrategias como HTTPS, flags de seguridad en cookies, tokens CSRF, rotación de sesiones, y autenticación de dos factores.
+- **Respuesta**: Los servidores toman varias medidas para asegurarse de que las cookies no puedan ser falsificadas o robadas:
+- **HTTPS**: Asegura que las cookies se transmitan de forma segura.
+- **Atributos de Cookie**: Como `HttpOnly` y `Secure` para mejorar la seguridad.
+- **Tokens CSRF**: Para prevenir ataques de falsificación de solicitudes entre sitios.
+- **Rotación de Sesiones**: Cambiar los identificadores de sesión con regularidad.
+- **Autenticación de Dos Factores**: Agrega una capa extra de seguridad.
+- **Políticas de Cors**: Controlan qué dominios pueden acceder a las cookies.
+Espero que este formato te sea de utilidad.
